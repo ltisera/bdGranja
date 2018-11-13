@@ -66,7 +66,7 @@ CREATE TABLE `domicilio` (
   `provincia` varchar(45) NOT NULL,
   PRIMARY KEY (`idDomicilio`),
   KEY `indiceLocalidad` (`localidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -84,7 +84,7 @@ CREATE TABLE `factura` (
   KEY `fk_Factura_Cliente1_idx` (`cliente`),
   KEY `indiceClientePorFactura` (`cliente`),
   CONSTRAINT `fk_Factura_Cliente1` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`cuit`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,6 +136,7 @@ CREATE TABLE `genetica` (
   `cabaña` varchar(45) NOT NULL,
   PRIMARY KEY (`idGenetica`),
   KEY `fk_Genetica_Cabaña1_idx` (`cabaña`),
+  KEY `indiceGeneticaPorCabaña` (`cabaña`),
   CONSTRAINT `fk_Genetica_Cabaña1` FOREIGN KEY (`cabaña`) REFERENCES `cabaña` (`cuit`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -164,7 +165,7 @@ CREATE TABLE `log` (
   KEY `fk_log_usuario1_idx` (`usuario`),
   CONSTRAINT `fk_Planilla_Galpon10` FOREIGN KEY (`galpon`) REFERENCES `galpon` (`idGalpon`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_log_usuario1` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`cuil`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -185,10 +186,11 @@ CREATE TABLE `planilla` (
   `novedades` mediumtext,
   PRIMARY KEY (`idPlanilla`),
   KEY `fk_Planilla_Galpon1_idx` (`galpon`),
-  KEY `indiceGallinasFecha` (`fecha`),
   KEY `indiceGalponFecha` (`galpon`,`fecha`),
+  KEY `indiceGallinasFecha` (`fecha`),
+  KEY `indiceCantidadAlimentoConsumido` (`cantidadAlimento`,`fecha`),
   CONSTRAINT `fk_Planilla_Galpon1` FOREIGN KEY (`galpon`) REFERENCES `galpon` (`idGalpon`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -207,6 +209,7 @@ CREATE TABLE `plantel` (
   `precio` float DEFAULT NULL,
   PRIMARY KEY (`idPlantel`),
   KEY `fk_Plantel_Genetica1_idx` (`genetica`),
+  KEY `indicePlantelPorGenetica` (`genetica`),
   CONSTRAINT `fk_Plantel_Genetica1` FOREIGN KEY (`genetica`) REFERENCES `genetica` (`idGenetica`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -256,4 +259,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-13 19:11:38
+-- Dump completed on 2018-11-13 19:52:11
