@@ -13,7 +13,7 @@ else
 	call agregarDomicilio(calle, numero, localidad, provincia);
 	set domicilio = (select max(idDomicilio) from domicilio);
 end if;
-INSERT INTO `bdGranja`.`cabaña` (`cuit`, `razonSocial`, `idDomicillio`) 
+INSERT INTO `bdGranja`.`cabaña` (`cuit`, `razonSocial`, `domicilio`) 
 VALUES ( cuit, razonSocial, domicilio);
 END$$
 
