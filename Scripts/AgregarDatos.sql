@@ -71,9 +71,9 @@ call agregarPlanilla("2018-10-12", 43, 3, 8, "Balanceado", 10, "Se comieron TODO
 call agregarPlanilla("2018-10-17", 15, 1, 12, "Balanceado", 11, "Se comieron TODO TOITO");
 
 /*codigo int, precio float, cantidad int*/
-call agregarProducto(1, 25, 200);
-call agregarProducto(2, 100, 75);
-call agregarProducto(3, 30, 150);
+call agregarProducto(1, 25, 12);
+call agregarProducto(2, 100, 6);
+call agregarProducto(3, 30, 24);
 
 
 
@@ -87,9 +87,9 @@ call agregarFactura("2018-4-7", "1");
 call agregarFactura("2018-6-3", "2");
 
 /*factura int(11),producto int (11), cantidad int(11)*/
-call agregarProductoAFactura(1, 3, 5);
-call agregarProductoAFactura(1, 1, 3);
-call agregarProductoAFactura(2, 2, 2);
+call agregarProductoAFactura(1, 1, 2);
+call agregarProductoAFactura(1, 2, 1);
+call agregarProductoAFactura(2, 2, 1);
 
 
 

@@ -61,7 +61,7 @@ DELIMITER $$
 USE `bdGranja`$$
 CREATE PROCEDURE `agregarProductoAFactura`(factura int(11),producto int (11), cantidad int(11))
 BEGIN
-insert into `bdGranja`.factura_has_producto(`factura`, `producto`. `cantidad`)
+insert into `bdGranja`.factura_has_producto(`factura`, `producto`, `cantidad`)
 values (factura, producto, cantidad);
 END$$
 
@@ -75,7 +75,7 @@ DELIMITER $$
 USE `bdGranja`$$
 CREATE PROCEDURE `agregarGalpon`(num int, cantGallinas int, codPlantel int)
 BEGIN
-INSERT INTO `bdGranja`.galpon (idGalpon, cantidadDeGallinas, plantel) VALUES (num, cantidadDeGallinas, codPlantel);
+INSERT INTO `bdGranja`.galpon (`idGalpon`, `cantidadDeGallinas`, `plantel`) VALUES (num, cantGallinas, codPlantel);
 END$$
 
 DELIMITER ;
