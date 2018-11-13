@@ -1,10 +1,11 @@
+/*1. Cantidad de gallinas muertas, por plantel y galpón entre fechas*/
 DROP PROCEDURE IF EXISTS consultaGallinasMuertas;
 
 delimiter $$
 create procedure consultaGallinasMuertas(in fechaA date, in fechaB date)
 begin
 
-	select plantel.idPlantel,galpon.idGalpon, sum(cantidadGallinasMuertas) as porPlantel from planilla 
+	explain select plantel.idPlantel,galpon.idGalpon, sum(cantidadGallinasMuertas) as porPlantel from planilla 
     inner join galpon on planilla.galpon = galpon.idGalpon 
     inner join plantel on galpon.plantel = plantel.idPlantel
     where planilla.fecha between fechaA and fechaB
@@ -13,7 +14,7 @@ end$$
 delimiter ;
 
 
-call consultaGallinasMuertas("2017-1-1", "2018-1-1");
+call consultaGallinasMuertas("2017-12-31", "2018-12-1");
 
 /**Listado de productos vendidos a clientes, filtrado por cliente y producto**/
 
@@ -25,7 +26,7 @@ inner join cliente on factura.cliente = cliente.cuit
 group by cliente.cuit, producto.idProducto;
 
 /*Listado de productos vendidos a clientes, filtrado por cliente y tipo de empaque.
-Empaque = prudcto.cantidad (la cantidad de huevos por empaque)*/
+Empaque = producto.cantidad (la cantidad de huevos por empaque)*/
 
 select cliente.cuit , producto.cantidad from producto 
 inner join factura_has_producto on producto.idProducto = factura_has_producto.producto 

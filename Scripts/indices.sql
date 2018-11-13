@@ -1,20 +1,15 @@
-/*1. Cantidad de gallinas muertas, por plantel y galpón entre fechas*/
+create index indiceClientePorFactura on Factura(cliente);
 
+create index indiceProductosPorEmpaque on producto(cantidad);
 
-/*2. Listado de productos vendidos a clientes, filtrado por cliente y producto*/
+create index indiceLocalidad on domicilio(localidad);
 
+create index indiceGalponFecha on planilla(galpon, fecha);
 
-/*3. Listado de productos vendidos a clientes, filtrado por cliente y tipo de empaque.*/
+create index indiceGallinasFecha on planilla(fecha);
 
+create index indiceCantidadAlimentoConsumido on planilla(cantidadAlimento, fecha);
 
-/*4. Listado de ventas filtrado por localidad.*/
+create index indicePlantelPorGenetica on plantel(genetica);
 
-
-/*5. Listado de entregas de alimento entre fechas, filtrado por galpón*/
-
-
-/*6. Listado de entregas de alimento entre fechas, filtrado por plantel*/
-
-
-/*7. Listado de planteles que alguna vez se hayan alojado en la granja, filtrado por
-cabaña y genética.*/
+create index indiceGeneticaPorCabaña on genetica(cabaña);
