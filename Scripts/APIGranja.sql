@@ -158,7 +158,7 @@ DELIMITER $$
 USE `bdGranja`$$
 CREATE PROCEDURE `agregarLog`(fecha date, cantHuevos int, cantMuertas int, cantAlimento float, tipoAlimento varchar(45), numGalpon int, novedades mediumtext, planilla int(11), fechaModificado date, usuario int(11))
 BEGIN
-insert into `bdGranja`.planilla(`fecha`, `cantidadHuevosObtenidos`, `cantidadGallinasMuertas`, `cantidadAlimento`, `tipoAlimento`, `galpon`, `novedades`, `planilla`, `fechaModificado`, `usuario`)
+insert into `bdGranja`.`log`(`fecha`, `cantidadHuevosObtenidos`, `cantidadGallinasMuertas`, `cantidadAlimento`, `tipoAlimento`, `galpon`, `novedades`, `planilla`, `fechaModificado`, `usuario`)
 values (fecha, cantHuevos, cantMuertas, cantAlimento, tipoAlimento, numGalpon, novedades, planilla, fechaModificado, usuario);
 END$$
 
@@ -172,7 +172,7 @@ DELIMITER $$
 USE `bdGranja`$$
 CREATE PROCEDURE `agregarUsuario`(cuil int(11), nombre varchar(45), apellido varchar(45), legajoInterno int(11), usuario varchar(45), pass varchar(45))
 BEGIN
-insert into `bdGranja`.planilla(`cuil`, `nombre`, `apellido`, `legajoInterno`, `usuario`, `password`)
+insert into `bdGranja`.usuario(`cuil`, `nombre`, `apellido`, `legajoInterno`, `usuario`, `password`)
 values (cuil, nombre, apellido, legajoInterno, usuario, pass);
 END$$
 
@@ -259,9 +259,9 @@ DELIMITER ;
 -- procedure modificarPlanilla
 -- -----------------------------------------------------
 DELIMITER ;;
-CREATE PROCEDURE `modificarPlanilla`(idPlanilla int, fecha date, cantHuevos int, cantMuertas int, cantAlimento float, tipoAlimento varchar(45), numGalpon int, novedades mediumtext)
+CREATE PROCEDURE `modificarPlanilla`(idPlanilla int, _fecha date, cantHuevos int, cantMuertas int, cantAlimento float, tipoAlimento varchar(45), numGalpon int, novedades mediumtext)
 BEGIN
-update planilla p set p.fecha = fecha, p.cantidadHuevosObtenidos = cantHuevos, p.cantidadGallinasMuertas = cantMuertas, p.cantidadAlimento = cantAlimento, p.tipoAlimento = tipoAlimento, p.galpon = numGalpon, p.novedades = novedades
+update planilla p set p.fecha = _fecha, p.cantidadHuevosObtenidos = cantHuevos, p.cantidadGallinasMuertas = cantMuertas, p.cantidadAlimento = cantAlimento, p.tipoAlimento = tipoAlimento, p.galpon = numGalpon, p.novedades = novedades
 where p.idPlanilla = idPlanilla;
 END ;;
 DELIMITER ;
