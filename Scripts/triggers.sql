@@ -1,9 +1,5 @@
 
 
-drop trigger tLogAltaPlanilla;
-drop trigger tLogModPlanilla;
-drop trigger tLogBajaPlanilla;
-
 
 delimiter $$
 create function fDevolverUsuario() returns int(11)
